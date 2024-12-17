@@ -28,3 +28,8 @@ export const estadosDoBrasil = [
 	{ nome: 'Tocantins', sigla: 'TO' },
 	{ nome: 'Argentina', sigla: 'AR' },
 ];
+
+export default function formatCPF(cpf: string) {
+	const cpfRegex = /^(\d{3})(\d{3})(\d{3})(\d{2})$/;
+	return cpf.replace(cpfRegex, '$1.$2.$3-$4');
+}

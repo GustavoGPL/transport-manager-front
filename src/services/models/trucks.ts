@@ -7,8 +7,10 @@ export const TruckService = {
 		const response = await api.get<TTruck[]>(`/trucks`); // Tipando a resposta
 		return response.data; // Retorna os dados do array diretamente
 	},
-	getById: async (id: string): Promise<TTruck> =>
-		await api.get(`/trucks/${id}`),
+	getById: async (id: string): Promise<TTruck> => {
+		const response = await api.get(`/trucks/${id}`);
+		return response.data;
+	},
 
 	create: async (data: TCreateTruck): Promise<TTruck> =>
 		await api.post('/trucks', data),

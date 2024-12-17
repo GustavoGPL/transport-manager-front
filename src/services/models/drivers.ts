@@ -7,8 +7,10 @@ export const DriversService = {
 		const response = await api.get<TDriver[]>(`/drivers`); // Tipando a resposta
 		return response.data; // Retorna os dados do array diretamente
 	},
-	getById: async (id: string): Promise<TDriver> =>
-		await api.get(`/drivers/${id}`),
+	getById: async (id: string): Promise<TDriver> => {
+		const response = await api.get(`/drivers/${id}`);
+		return response.data;
+	},
 
 	create: async (data: TCreateDriver): Promise<TDriver> =>
 		await api.post('/drivers', data),

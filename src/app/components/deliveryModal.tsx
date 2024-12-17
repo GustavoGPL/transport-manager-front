@@ -52,10 +52,6 @@ import { DeliveriesService } from '@/services/models/deliveries';
 import { toast } from 'react-toastify';
 import { queryClient } from '@/utils/react-query';
 
-type TProps = {
-	refetchDeliveries: () => void;
-};
-
 const formSchema = z.object({
 	caminhaoId: z.string().min(1, {
 		message: 'Caminhão é obrigatório',
@@ -94,7 +90,7 @@ const formSchema = z.object({
 	temSeguro: z.string(),
 });
 
-export function DeliveryModal({ refetchDeliveries }: TProps) {
+export function DeliveryModal() {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -129,6 +125,9 @@ export function DeliveryModal({ refetchDeliveries }: TProps) {
 			toast.success(`Entrega criada com sucesso`);
 			queryClient.invalidateQueries({
 				queryKey: ['getDeliveries'],
+			});
+			queryClient.invalidateQueries({
+				queryKey: ['getTrucks'],
 			});
 		},
 		onError: (error: any) => {
@@ -181,11 +180,13 @@ export function DeliveryModal({ refetchDeliveries }: TProps) {
 												</SelectTrigger>
 											</FormControl>
 											<SelectContent>
-												{caminhoes?.map(caminhao => (
-													<SelectItem value={caminhao._id} key={caminhao._id}>
-														{caminhao.modelo}
-													</SelectItem>
-												))}
+												{caminhoes
+													?.filter(caminhao => caminhao.status !== 'Em uso')
+													.map(caminhao => (
+														<SelectItem value={caminhao._id} key={caminhao._id}>
+															{caminhao.modelo}
+														</SelectItem>
+													))}
 											</SelectContent>
 										</Select>
 										<FormMessage />

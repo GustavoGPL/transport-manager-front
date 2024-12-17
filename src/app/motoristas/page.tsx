@@ -17,9 +17,13 @@ import { SkeletonTable } from '@/components/skeleton-table';
 import { columns } from './columns';
 import { DriversService } from '@/services/models/drivers';
 import { queryClient } from '@/utils/react-query';
+import { useState } from 'react';
+import DynamicPagination from '@/components/dynamic-pagination';
 
 const Home = () => {
 	const router = useRouter();
+	const [currentPage, setCurrentPage] = useState(1);
+	const itemsPerPage = 5;
 
 	const {
 		data: drivers,
@@ -48,6 +52,16 @@ const Home = () => {
 		}
 	};
 
+	// Calcular o número total de páginas
+	const totalPages = Math.ceil((drivers?.length || 0) / itemsPerPage);
+
+	// Calcular os índices dos dados para a página atual
+	const indexOfLastItem = currentPage * itemsPerPage;
+	const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
+	// Dados a serem exibidos para a página atual
+	const currentData = drivers?.slice(indexOfFirstItem, indexOfLastItem);
+
 	console.log(drivers);
 
 	return (
@@ -75,8 +89,13 @@ const Home = () => {
 				) : error ? (
 					<HandleError message={error.message} />
 				) : (
-					<DataTable data={drivers || []} columns={columns(handleDelete)} />
+					<DataTable data={currentData || []} columns={columns(handleDelete)} />
 				)}
+				<DynamicPagination
+					page={currentPage}
+					setPage={setCurrentPage}
+					totalPages={totalPages}
+				/>
 			</div>
 		</div>
 	);

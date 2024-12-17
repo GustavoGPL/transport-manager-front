@@ -47,7 +47,7 @@ export function DataTable<TData, TValue>({
 									<TableHead
 										key={header.id}
 										className={cn(
-											'text-center bg-darkRed text-white text-sm md:text-lg',
+											'text-center bg-[#2c3e50] text-white text-sm md:text-lg',
 											auxClass
 										)}
 									>

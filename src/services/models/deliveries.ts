@@ -19,5 +19,8 @@ export const DeliveriesService = {
 		body: TCreateDelivery
 	): Promise<TDelivery> => await api.put(`/deliveries/${deliveryId}`, body),
 
+	finish: async (deliveryId: string): Promise<TDelivery> =>
+		await api.put(`/deliveries/${deliveryId}/finalize`),
+
 	delete: async (id: string) => await api.delete(`/deliveries/${id}`),
 };

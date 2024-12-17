@@ -1,4 +1,5 @@
 export type TDelivery = {
+	_id: string;
 	caminhaoId: {
 		_id: string;
 		modelo: string;
@@ -12,7 +13,7 @@ export type TDelivery = {
 	valorCarga: number; // Valor da carga
 	localChegada: string;
 	regiao: string; // Região de entrega
-	status: 'Pendente' | 'Concluída'; // Status da entrega
+	status: 'Andamento' | 'Concluída' | 'Removida' | 'AguardandoInício'; // Status da entrega
 	dataInicio: string; // Data prevista para entrega
 	dataFim: string;
 	valiosa?: boolean; // Indica se a carga é valiosa (opcional)

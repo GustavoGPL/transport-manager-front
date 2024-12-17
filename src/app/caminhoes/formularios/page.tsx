@@ -30,7 +30,7 @@ const formSchema = z.object({
 	modelo: z.string().min(1, {
 		message: 'Campo obrigatório',
 	}),
-	capacidade: z.number().min(1, {
+	capacidade: z.string().min(1, {
 		message: 'Campo obrigatório',
 	}),
 });
@@ -47,7 +47,7 @@ export default function RegisterSquare() {
 		defaultValues: {
 			placa: '',
 			modelo: '',
-			capacidade: undefined,
+			capacidade: '',
 		},
 	});
 
@@ -58,13 +58,15 @@ export default function RegisterSquare() {
 				throw new Error();
 			}
 
+			console.log('loaded', loadedTruck);
+
 			form.setValue('placa', loadedTruck?.placa);
 			form.setValue('modelo', loadedTruck?.modelo);
-			// form.setValue('capacidade', loadedTruck?.capacidade);
+			form.setValue('capacidade', loadedTruck?.capacidade.toString());
 
 			return loadedTruck;
 		} catch (error) {
-			toast.error('Erro ao carregar motorista', {
+			toast.error('Erro ao carregar o caminhão', {
 				toastId: 'error',
 			});
 		}
@@ -89,8 +91,8 @@ export default function RegisterSquare() {
 			}
 		},
 		onSuccess: data => {
-			toast.success(`Motorista ${caminhaoId ? 'editado' : 'cadastrado'}`);
-			router.push('/motoristas');
+			toast.success(`Caminhão ${caminhaoId ? 'editado' : 'cadastrado'}`);
+			router.push('/caminhoes');
 		},
 		onError: err => {
 			console.error(err);
@@ -103,7 +105,11 @@ export default function RegisterSquare() {
 	const onSubmit = useCallback(
 		(values: z.infer<typeof formSchema>) => {
 			console.log(values);
-			createMutation.mutate(values);
+			const processedValues = {
+				...values,
+				capacidade: parseFloat(values.capacidade),
+			};
+			createMutation.mutate(processedValues);
 		},
 		[createMutation]
 	);
@@ -128,10 +134,10 @@ export default function RegisterSquare() {
 								name="placa"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Nome *</FormLabel>
+										<FormLabel>Placa *</FormLabel>
 										<FormControl>
 											<Input
-												placeholder="Nome do motorista"
+												placeholder="Placa do veículo"
 												className="grid-cols-2 md:grid-cols-1"
 												{...field}
 											/>
@@ -145,10 +151,10 @@ export default function RegisterSquare() {
 								name="modelo"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Cpf *</FormLabel>
+										<FormLabel>Modelo *</FormLabel>
 										<FormControl>
 											<Input
-												placeholder="Cpf do motorista"
+												placeholder="Modelo do veículo"
 												className="grid-cols-2 md:grid-cols-1"
 												{...field}
 											/>
@@ -162,10 +168,10 @@ export default function RegisterSquare() {
 								name="capacidade"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Telefone *</FormLabel>
+										<FormLabel>Capacidade em KG *</FormLabel>
 										<FormControl>
 											<Input
-												placeholder="telefone do motorista"
+												placeholder="Capacidade do veículo"
 												className="grid-cols-2 md:grid-cols-1"
 												{...field}
 											/>
