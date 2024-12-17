@@ -32,7 +32,7 @@ export const columns = (
 		cell: ({ row }) => {
 			return (
 				<Badge
-					variant={row.getValue('status') === 'Em uso' ? 'red' : 'green'}
+					variant={row.getValue('status') === 'Indisponível' ? 'red' : 'green'}
 					className="border-none"
 				>
 					{row.getValue('status')}

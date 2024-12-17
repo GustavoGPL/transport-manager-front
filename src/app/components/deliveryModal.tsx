@@ -87,7 +87,9 @@ const formSchema = z.object({
 		.refine(date => !isNaN(Date.parse(date)), {
 			message: 'Data de fim deve ser válida',
 		}),
-	temSeguro: z.string(),
+	temSeguro: z.string().min(1, {
+		message: 'Campo orbigatório',
+	}),
 });
 
 export function DeliveryModal() {
@@ -140,6 +142,7 @@ export function DeliveryModal() {
 			const processedValues = {
 				...values,
 				valorCarga: parseFloat(values.valorCarga),
+				temSeguro: values.temSeguro === 'true' ? true : false,
 			};
 			createDeliveryMutation.mutate(processedValues);
 			console.log(processedValues);
@@ -210,11 +213,18 @@ export function DeliveryModal() {
 												</SelectTrigger>
 											</FormControl>
 											<SelectContent>
-												{motoristas?.map(motorista => (
-													<SelectItem value={motorista._id} key={motorista._id}>
-														{motorista.nome}
-													</SelectItem>
-												))}
+												{motoristas
+													?.filter(
+														motorista => motorista.status !== 'Indisponível'
+													)
+													.map(motorista => (
+														<SelectItem
+															value={motorista._id}
+															key={motorista._id}
+														>
+															{motorista.nome}
+														</SelectItem>
+													))}
 											</SelectContent>
 										</Select>
 										<FormMessage />
@@ -415,7 +425,7 @@ export function DeliveryModal() {
 								name="dataFim"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Data de Fim *</FormLabel>
+										<FormLabel>Data Previsão de entrega *</FormLabel>
 										<FormControl>
 											<Input
 												type="date"

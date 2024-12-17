@@ -3,6 +3,7 @@ export type TDriver = {
 	nome: string;
 	cpf: string;
 	telefone: string;
+	status: string;
 	entregasNoMes: number;
 	entregaId?: string;
 };

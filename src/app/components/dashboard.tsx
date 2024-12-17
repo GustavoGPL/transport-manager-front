@@ -14,10 +14,10 @@ import {
 } from '@/components/ui/popover';
 
 const statusStyles = {
-	Andamento: 'bg-yellow-100 text-yellow-800',
-	Concluída: 'bg-green-100 text-green-800',
+	Andamento: 'bg-yellow-200 text-yellow-800',
+	Concluída: 'bg-green-200 text-green-800',
 	Removida: 'bg-slate-300',
-	AguardandoInício: 'bg-blue-200 text-blue-800',
+	AguardandoInício: 'bg-blue-200 text-blue-800 ',
 };
 
 type DashboardProps = {
@@ -103,7 +103,7 @@ const Dashboard: React.FC<DashboardProps> = ({
 										Caminhão: {delivery.caminhaoId.modelo}
 									</h3>
 									<span
-										className={`px-3 py-1 text-sm font-medium rounded ${
+										className={`px-3 py-1 text-lg font-bold rounded   ${
 											statusStyles[delivery.status]
 										}`}
 									>
@@ -126,11 +126,13 @@ const Dashboard: React.FC<DashboardProps> = ({
 								</p>
 								<p className="text-gray-600 text-sm mb-2">
 									<strong>Data de Início:</strong>{' '}
-									{new Date(delivery?.dataInicio).toLocaleDateString()}
+									{new Date(delivery?.dataInicio).toLocaleDateString()} -{' '}
+									{new Date(delivery?.dataInicio).toISOString().slice(11, 16)}h
 								</p>
 								<p className="text-gray-600 text-sm mb-2">
-									<strong>Prazo de Entrega:</strong>{' '}
-									{new Date(delivery?.dataFim).toLocaleDateString()}
+									<strong>Previsão de Entrega:</strong>{' '}
+									{new Date(delivery?.dataFim).toLocaleDateString()} - Até às{' '}
+									{new Date(delivery?.dataFim).toISOString().slice(11, 16)}h
 								</p>
 								<p className="text-blue-600 text-lg font-semibold mb-2">
 									Valor da Carga: R${' '}
@@ -163,17 +165,27 @@ const Dashboard: React.FC<DashboardProps> = ({
 											<Button
 												className="bg-green-500 hover:bg-green-600"
 												onClick={() => handleFinishClick(delivery._id)}
+												disabled={
+													delivery.status === 'Concluída' ||
+													delivery.status === 'AguardandoInício'
+														? true
+														: false
+												}
 											>
-												Finalizar
+												Concluir
 											</Button>
 										</PopoverTrigger>
 										<PopoverContent className="w-80">
 											<div className="flex flex-col gap-4">
 												<h3 className="text-lg font-semibold">
-													Confirmar Finalização
+													Confirmar Concluir
 												</h3>
 												<p className="text-sm text-muted-foreground">
-													Você tem certeza que deseja finalizar esta entrega?
+													<p className="text-red-500 font-bold">
+														Esta ação não poderá ser desfeita e irá concluir
+														essa entrega!
+													</p>
+													Você tem certeza que deseja concluir esta entrega?
 												</p>
 												<div className="flex justify-end gap-3">
 													<Button
@@ -201,6 +213,10 @@ const Dashboard: React.FC<DashboardProps> = ({
 													Confirmar Exclusão
 												</h3>
 												<p className="text-sm text-muted-foreground">
+													<p className="text-red-500 font-bold">
+														Esta ação não poderá ser desfeita e irá exluir essa
+														entrega dos registros!
+													</p>
 													Você tem certeza que deseja excluir esta entrega?
 												</p>
 												<div className="flex justify-end gap-3">

@@ -1,27 +1,29 @@
 'use client';
 import Link from 'next/link';
+import { FaTruckLoading } from 'react-icons/fa';
 
 export default function Header() {
 	return (
 		<div className="flex flex-col w-full">
 			<header className="relative z-50 w-full bg-[#2c3e50] shadow-md">
 				<div className="w-full text-right overflow-x-hidden">
-					<div className="relative flex justify-between items-center p-4 py-6">
+					<div className="relative flex flex-col gap-10 md:flex-row justify-between items-center p-4 py-6">
 						{/* Logo e título */}
 						<Link
 							href="/"
 							className="flex items-center justify-between w-full sm:w-auto"
 						>
 							<div className="text-white flex items-center space-x-3">
-								<h1 className="text-2xl font-noto font-semibold tracking-wide">
-									Transport-Manager
+								<h1 className="flex flex-row-reverse items-center gap-3 text-2xl font-noto font-semibold tracking-wide">
+									<p>Transport-Manager</p>
+									<FaTruckLoading size={40} />
 								</h1>
 							</div>
 						</Link>
 
 						{/* Navegação */}
-						<nav className="hidden md:flex space-x-8">
-							<ul className="flex justify-center md:justify-end items-center space-x-8 text-lg">
+						<nav className="flex md:flex space-x-8">
+							<ul className="flex justify-center flex-col gap-2 md:flex-row md:justify-end items-center text-lg">
 								<li>
 									<Link
 										href="/"
@@ -51,36 +53,6 @@ export default function Header() {
 					</div>
 				</div>
 			</header>
-
-			{/* Menu para dispositivos móveis */}
-			<div className="md:hidden">
-				<div className="flex justify-between p-4">
-					<Link
-						href="/"
-						className="text-white text-2xl font-noto font-semibold"
-					>
-						Transport-Manager
-					</Link>
-					<button className="text-white focus:outline-none">
-						{/* Icone de menu (para abrir o menu mobile) */}
-						<svg
-							className="w-6 h-6"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth="2"
-								d="M4 6h16M4 12h16M4 18h16"
-							/>
-						</svg>
-					</button>
-				</div>
-				{/* Aqui podemos colocar um menu dropdown, se necessário */}
-			</div>
 		</div>
 	);
 }

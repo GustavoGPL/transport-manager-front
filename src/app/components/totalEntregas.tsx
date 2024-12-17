@@ -38,7 +38,8 @@ export function TotalEntregas({ deliveries, trucks, isFetching }: TProps) {
 										deliveries.filter(
 											delivery =>
 												delivery.status !== 'Removida' &&
-												delivery.status !== 'AguardandoInício'
+												delivery.status !== 'AguardandoInício' &&
+												delivery.status !== 'Concluída'
 										).length
 									}
 								</p>

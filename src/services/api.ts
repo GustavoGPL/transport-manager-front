@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosInstance } from 'axios';
 
 const api = axios.create({
-	baseURL: 'http://localhost:8080',
+	baseURL: process.env.baseURL,
 	timeout: 10 * 1000,
 	headers: {
 		Accept: 'application/json',

@@ -47,6 +47,12 @@ const Home = () => {
 			queryClient.invalidateQueries({
 				queryKey: ['getDeliveries'],
 			});
+			queryClient.invalidateQueries({
+				queryKey: ['getTrucks'],
+			});
+			queryClient.invalidateQueries({
+				queryKey: ['getDrivers'],
+			});
 		},
 		onError: (error: any) => {
 			toast.error(error.response.data.message);
@@ -58,6 +64,14 @@ const Home = () => {
 		onSuccess: () => {
 			queryClient.invalidateQueries({
 				queryKey: ['getDeliveries'],
+			});
+
+			queryClient.invalidateQueries({
+				queryKey: ['getTrucks'],
+			});
+
+			queryClient.invalidateQueries({
+				queryKey: ['getDrivers'],
 			});
 		},
 		onError: (error: any) => {
