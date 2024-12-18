@@ -14,10 +14,10 @@ export default function Header() {
 						>
 							<div className="text-white flex justify-between items-center space-x-3 w-full">
 								<h1 className="flex flex-row-reverse items-center gap-3 text-2xl font-noto font-semibold tracking-wide">
-									<p>
+									<div>
 										<p className="text-green-500">Transport</p>
 										<p className="text-yellow-500">Manager</p>
-									</p>
+									</div>
 									<FaTruckLoading size={40} />
 								</h1>
 							</div>

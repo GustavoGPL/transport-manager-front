@@ -13,7 +13,6 @@ type TProps = {
 
 export function ValorDiario({ deliveries, isFetching }: TProps) {
 	const [selectedDate, setSelectedDate] = useState<string>('');
-	console.log('Date', selectedDate);
 
 	const filteredDeliveries = deliveries.filter(delivery => {
 		if (selectedDate) {

@@ -56,8 +56,6 @@ export default function RegisterSquare() {
 				throw new Error();
 			}
 
-			console.log('loaded', loadedTruck);
-
 			form.setValue('placa', loadedTruck?.placa);
 			form.setValue('modelo', loadedTruck?.modelo);
 			form.setValue('capacidade', loadedTruck?.capacidade.toString());
@@ -102,7 +100,6 @@ export default function RegisterSquare() {
 
 	const onSubmit = useCallback(
 		(values: z.infer<typeof formSchema>) => {
-			console.log(values);
 			const processedValues = {
 				...values,
 				capacidade: parseFloat(values.capacidade),

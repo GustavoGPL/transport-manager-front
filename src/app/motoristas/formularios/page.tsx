@@ -100,7 +100,6 @@ export default function RegisterSquare() {
 
 	const onSubmit = useCallback(
 		(values: z.infer<typeof formSchema>) => {
-			console.log(values);
 			createMutation.mutate(values);
 		},
 		[createMutation]

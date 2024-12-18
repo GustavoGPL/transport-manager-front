@@ -50,8 +50,6 @@ const Home = () => {
 	const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 	const currentData = drivers?.slice(indexOfFirstItem, indexOfLastItem);
 
-	console.log(drivers);
-
 	return (
 		<div className="defaultPage">
 			<div className="secondaryDiv">

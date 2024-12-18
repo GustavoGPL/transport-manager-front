@@ -145,7 +145,6 @@ export function DeliveryModal() {
 				temSeguro: values.temSeguro === 'true' ? true : false,
 			};
 			createDeliveryMutation.mutate(processedValues);
-			console.log(processedValues);
 		},
 		[createDeliveryMutation]
 	);
@@ -157,16 +156,16 @@ export function DeliveryModal() {
 					Nova Entrega
 				</Button>
 			</DialogTrigger>
-			<DialogContent className="sm:max-w-[800px]">
-				<DialogHeader>
-					<DialogTitle>Criar Entrega</DialogTitle>
-				</DialogHeader>
+			<DialogContent className="sm:max-w-[800px] sm:h-[540px]">
+				<div className="flex h-fit">
+					<h2 className="font-bold">Criar Entrega</h2>
+				</div>
 				<Form {...form}>
 					<form
 						onSubmit={form.handleSubmit(onSubmit)}
-						className="w-full flex flex-col gap-5"
+						className="w-full flex flex-col gap-3"
 					>
-						<div className="grid md:grid-cols-2 gap-5">
+						<div className="grid md:grid-cols-2 gap-2">
 							<FormField
 								control={form.control}
 								name="caminhaoId"
@@ -289,12 +288,17 @@ export function DeliveryModal() {
 									<FormItem>
 										<FormLabel>Valor da Carga *</FormLabel>
 										<FormControl>
-											<Input
-												type="number"
-												placeholder="Digite o valor da carga"
-												className="grid-cols-2 md:grid-cols-1"
-												{...field}
-											/>
+											<div className="relative">
+												<Input
+													type="number"
+													placeholder="Digite o valor da carga"
+													className="pr-10"
+													{...field}
+												/>
+												<span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+													R$
+												</span>
+											</div>
 										</FormControl>
 										<FormMessage />
 									</FormItem>
@@ -307,7 +311,7 @@ export function DeliveryModal() {
 									name="localChegada"
 									render={({ field }) => (
 										<FormItem className="flex flex-col w-full">
-											<FormLabel>Local Chegada</FormLabel>
+											<FormLabel>Local Chegada *</FormLabel>
 											<Popover>
 												<PopoverTrigger asChild>
 													<FormControl>
@@ -328,7 +332,7 @@ export function DeliveryModal() {
 														</Button>
 													</FormControl>
 												</PopoverTrigger>
-												<PopoverContent className="w-[200px] p-0">
+												<PopoverContent className="w-[320px] p-0">
 													<Command>
 														<CommandInput
 															placeholder="Search framework..."
@@ -375,7 +379,7 @@ export function DeliveryModal() {
 								name="regiao"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Região</FormLabel>
+										<FormLabel>Região *</FormLabel>
 										<Select
 											onValueChange={field.onChange}
 											defaultValue={field.value}
