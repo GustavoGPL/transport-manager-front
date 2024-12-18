@@ -15,7 +15,6 @@ export function ValorDiario({ deliveries, isFetching }: TProps) {
 	const [selectedDate, setSelectedDate] = useState<string>('');
 	console.log('Date', selectedDate);
 
-	// Filtra entregas conforme a data selecionada
 	const filteredDeliveries = deliveries.filter(delivery => {
 		if (selectedDate) {
 			const deliveryDate = new Date(delivery.dataInicio)
@@ -23,10 +22,9 @@ export function ValorDiario({ deliveries, isFetching }: TProps) {
 				.split('T')[0];
 			return deliveryDate === selectedDate;
 		}
-		return true; // Exibe todas as entregas se nenhuma data for selecionada
+		return true;
 	});
 
-	// Calcula o total do valor da carga para as entregas filtradas
 	const totalValorCarga = filteredDeliveries
 		?.filter(
 			content =>
@@ -47,7 +45,6 @@ export function ValorDiario({ deliveries, isFetching }: TProps) {
 				</div>
 			) : (
 				<>
-					{/* Seção para filtro de data */}
 					<div className="flex items-center p-2">
 						<div className="mr-2 text-md">Filtrar por data de início:</div>
 						<input
@@ -58,7 +55,6 @@ export function ValorDiario({ deliveries, isFetching }: TProps) {
 						/>
 					</div>
 
-					{/* Cabeçalho do card */}
 					<CardHeader className="items-center pb-0">
 						<CardTitle>
 							{selectedDate
@@ -67,7 +63,6 @@ export function ValorDiario({ deliveries, isFetching }: TProps) {
 						</CardTitle>
 					</CardHeader>
 
-					{/* Conteúdo do Card com o valor total */}
 					<CardContent className="flex-1 pb-0">
 						<div className="flex justify-center items-center text-3xl font-bold">
 							{formattedValor}

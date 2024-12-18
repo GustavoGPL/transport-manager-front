@@ -7,15 +7,17 @@ import Header from '@/components/header';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { queryClient } from './react-query';
+import { useSession } from 'next-auth/react';
 
 export default function QueryProvider({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
+	const { data: session } = useSession();
 	return (
 		<QueryClientProvider client={queryClient}>
-			<Header />
+			{session?.user && <Header />}
 			{children}
 			<ReactQueryDevtools initialIsOpen={false} />
 			<ToastContainer />

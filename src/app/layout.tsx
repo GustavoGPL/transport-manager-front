@@ -4,8 +4,9 @@ import './globals.css';
 import Header from '@/components/header';
 import QueryProvider from '@/utils/queryProvider';
 import { cn } from '@/lib/utils';
+import SessionProviderWrapper from '@/utils/sessionsProviderWrapper';
 
-const roboto = Roboto({ subsets: ['latin'], weight: ['400', '700'] }); // Configuração da fonte Roboto
+const roboto = Roboto({ subsets: ['latin'], weight: ['400', '700'] });
 
 export const metadata: Metadata = {
 	title: 'Transport Manager',
@@ -19,10 +20,10 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body
-				className={cn('antialiased bg-gray-100', roboto.className)} // Usando a classe da fonte Roboto
-			>
-				<QueryProvider>{children}</QueryProvider>
+			<body className={cn('antialiased bg-gray-100', roboto.className)}>
+				<SessionProviderWrapper>
+					<QueryProvider>{children}</QueryProvider>
+				</SessionProviderWrapper>
 			</body>
 		</html>
 	);

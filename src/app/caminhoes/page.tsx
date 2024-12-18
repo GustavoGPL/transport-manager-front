@@ -1,20 +1,14 @@
 'use client';
 
-import { Card, CardHeader, CardTitle } from '@/components/ui/card';
-import Link from 'next/link';
-import { FaPlus, FaThLarge } from 'react-icons/fa';
-import { MdChecklistRtl } from 'react-icons/md';
-import { AiOutlineContainer } from 'react-icons/ai';
-import { FaPlay } from 'react-icons/fa';
+import { CardTitle } from '@/components/ui/card';
+import { FaPlus } from 'react-icons/fa';
 import BackButton from '@/components/back-button';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { DataTable } from '@/components/ui/data-table';
 import { HandleError } from '@/components/handle-error';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import { SkeletonTable } from '@/components/skeleton-table';
-import { DriversService } from '@/services/models/drivers';
 import { columns } from './columns';
 import { TruckService } from '@/services/models/trucks';
 import { queryClient } from '@/utils/react-query';
@@ -47,19 +41,14 @@ const Home = () => {
 	});
 
 	const handleDelete = (id: string) => {
-		if (confirm('Tem certeza que deseja excluir este motorista?')) {
-			deleteMutation.mutate(id);
-		}
+		deleteMutation.mutate(id);
 	};
 
-	// Calcular o número total de páginas
 	const totalPages = Math.ceil((caminhoes?.length || 0) / itemsPerPage);
 
-	// Calcular os índices dos dados para a página atual
 	const indexOfLastItem = currentPage * itemsPerPage;
 	const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
-	// Dados a serem exibidos para a página atual
 	const currentData = caminhoes?.slice(indexOfFirstItem, indexOfLastItem);
 
 	return (

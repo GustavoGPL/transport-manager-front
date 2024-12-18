@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TDelivery } from '@/types/deliveries';
 import { SkeletonChart } from '@/components/skeleton-chart';
 import { TTruck } from '@/types/trucks';
-import { useEffect } from 'react';
 
 type TProps = {
 	deliveries: TDelivery[];
@@ -25,10 +24,8 @@ export function TotalEntregas({ deliveries, trucks, isFetching }: TProps) {
 						<CardTitle>Total de Entregas e Caminhões</CardTitle>
 					</CardHeader>
 
-					{/* Seção de Caminhões */}
 					<CardContent className="flex-1 pb-0">
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-							{/* Card de Entregas em Andamento */}
 							<div className="flex flex-col items-center p-4 rounded-lg shadow-md bg-blue-50">
 								<h3 className="text-xl font-semibold text-blue-600">
 									Entregas em Andamento
@@ -45,7 +42,6 @@ export function TotalEntregas({ deliveries, trucks, isFetching }: TProps) {
 								</p>
 							</div>
 
-							{/* Card de Caminhões Disponíveis */}
 							<div className="flex flex-col items-center p-4 rounded-lg shadow-md bg-green-50">
 								<h3 className="text-xl font-semibold text-green-600">
 									Caminhões Disponíveis
@@ -55,7 +51,6 @@ export function TotalEntregas({ deliveries, trucks, isFetching }: TProps) {
 								</p>
 							</div>
 
-							{/* Card de Total de Entregas */}
 							<div className="flex flex-col items-center p-4 rounded-lg shadow-md bg-purple-50">
 								<h3 className="text-xl font-semibold text-purple-600">
 									Total de Entregas
@@ -69,7 +64,6 @@ export function TotalEntregas({ deliveries, trucks, isFetching }: TProps) {
 								</p>
 							</div>
 
-							{/* Card de Total de Caminhões */}
 							<div className="flex flex-col items-center p-4 rounded-lg shadow-md bg-orange-50">
 								<h3 className="text-xl font-semibold text-orange-600">
 									Total de Caminhões

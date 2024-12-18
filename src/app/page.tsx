@@ -1,11 +1,6 @@
 'use client';
 
-import { Card, CardHeader, CardTitle } from '@/components/ui/card';
-import Link from 'next/link';
-import { FaThLarge } from 'react-icons/fa';
-import { MdChecklistRtl } from 'react-icons/md';
-import { AiOutlineContainer } from 'react-icons/ai';
-import { FaPlay } from 'react-icons/fa';
+import { Card } from '@/components/ui/card';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { DeliveriesService } from '@/services/models/deliveries';
 import Dashboard from './components/dashboard';
@@ -87,25 +82,20 @@ const Home = () => {
 		finishMutation.mutate(id);
 	};
 
-	// Filtrando entregas removidas
 	const filteredDeliveries =
 		deliveries?.filter(delivery => delivery.status !== 'Removida') || [];
 
-	// Calculando o número total de páginas
 	const totalPages = Math.ceil(filteredDeliveries.length / itemsPerPage);
 
-	// Calculando os índices dos dados para a página atual
 	const indexOfLastItem = currentPage * itemsPerPage;
 	const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
-	// Dados a serem exibidos para a página atual
 	const currentData = filteredDeliveries.slice(
 		indexOfFirstItem,
 		indexOfLastItem
 	);
 
 	useEffect(() => {
-		// Recarregar os dados ao mudar de página
 		refetch();
 	}, [currentPage, refetch]);
 

@@ -10,5 +10,5 @@ export type TDriver = {
 
 export type TCreateDriver = Omit<
 	TDriver,
-	'_id' | 'entregaId' | 'entregasNoMes'
+	'_id' | 'entregaId' | 'entregasNoMes' | 'status'
 >;

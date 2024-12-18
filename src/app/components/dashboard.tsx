@@ -5,7 +5,6 @@ import { TDelivery } from '@/types/deliveries';
 import { DeliveryModal } from './deliveryModal';
 import { Label } from '@/components/ui/label';
 import { SkeletonCard } from '@/components/skeleton-card';
-import { CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
 	Popover,
@@ -38,7 +37,7 @@ const Dashboard: React.FC<DashboardProps> = ({
 	const [deliveryToFinish, setDeliveryToFinish] = useState<string>('');
 
 	const filteredDeliveries = deliveries
-		.filter(delivery => delivery.status !== 'Removida') // Remover status 'Removida'
+		.filter(delivery => delivery.status !== 'Removida')
 		.filter(delivery => {
 			if (selectedDate) {
 				const deliveryDate = new Date(delivery.dataInicio)
@@ -50,24 +49,24 @@ const Dashboard: React.FC<DashboardProps> = ({
 		});
 
 	const handleDeleteClick = (id: string) => {
-		setDeliveryToDelete(id); // Armazena o ID da entrega a ser deletada
+		setDeliveryToDelete(id);
 	};
 
 	const handleFinishClick = (id: string) => {
-		setDeliveryToFinish(id); // Armazena o ID da entrega a ser deletada
+		setDeliveryToFinish(id);
 	};
 
 	const handleConfirmDelete = () => {
 		if (deliveryToDelete) {
-			onDelete(deliveryToDelete); // Chama a função de deletar passando o ID
-			setDeliveryToDelete(''); // Limpa o ID após a exclusão
+			onDelete(deliveryToDelete);
+			setDeliveryToDelete('');
 		}
 	};
 
 	const handleConfirmFinish = () => {
 		if (deliveryToFinish) {
-			onFinish(deliveryToFinish); // Chama a função de deletar passando o ID
-			setDeliveryToFinish(''); // Limpa o ID após a exclusão
+			onFinish(deliveryToFinish);
+			setDeliveryToFinish('');
 		}
 	};
 
@@ -103,7 +102,7 @@ const Dashboard: React.FC<DashboardProps> = ({
 										Caminhão: {delivery.caminhaoId.modelo}
 									</h3>
 									<span
-										className={`px-3 py-1 text-lg font-bold rounded   ${
+										className={`px-3 py-1 text-sm font-bold rounded   ${
 											statusStyles[delivery.status]
 										}`}
 									>

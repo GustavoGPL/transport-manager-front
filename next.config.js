@@ -10,18 +10,13 @@ switch (process.env.NEXT_PUBLIC_AMB) {
   }
   case "dev": {
     ENV = {
-        baseURL: "https://e-stock-backend-dev-159454469390.us-central1.run.app/", // "https://estock-backend-440615.rj.r.appspot.com",
+        baseURL: "https://transport-manager-back.vercel.app/", // "https://estock-backend-440615.rj.r.appspot.com",
     };
     break;
   }
-  case "prod":
-    ENV = {
-        baseURL: "https://spca-dev.sspds.ce.gov.br",
-    };
-    break;
   default:
     ENV = {
-        baseURL: "https://estock-backend-440615.rj.r.appspot.com",
+        baseURL: "https://transport-manager-back.vercel.app/",
     };
 }
 

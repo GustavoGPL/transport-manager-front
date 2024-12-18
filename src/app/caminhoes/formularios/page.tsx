@@ -13,13 +13,11 @@ import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { Card, CardTitle } from '@/components/ui/card';
+import { CardTitle } from '@/components/ui/card';
 import BackButton from '@/components/back-button';
 import { useCallback, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
-import { DriversService } from '@/services/models/drivers';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { TCreateDriver } from '@/types/drivers';
 import { TruckService } from '@/services/models/trucks';
 import { TCreateTruck } from '@/types/trucks';
 
