@@ -125,13 +125,12 @@ const Dashboard: React.FC<DashboardProps> = ({
 								</p>
 								<p className="text-gray-600 text-sm mb-2">
 									<strong>Data de Início:</strong>{' '}
-									{new Date(delivery?.dataInicio).toLocaleDateString()} -{' '}
-									{new Date(delivery?.dataInicio).toISOString().slice(11, 16)}h
+									{new Date(delivery?.dataInicio).toLocaleDateString()} - 00:00h
 								</p>
 								<p className="text-gray-600 text-sm mb-2">
 									<strong>Previsão de Entrega:</strong>{' '}
 									{new Date(delivery?.dataFim).toLocaleDateString()} - Até às{' '}
-									{new Date(delivery?.dataFim).toISOString().slice(11, 16)}h
+									17:00h
 								</p>
 								<p className="text-blue-600 text-lg font-semibold mb-2">
 									Valor da Carga: R${' '}
