@@ -36,33 +36,6 @@ export default function Header() {
 									</p>
 									<FaTruckLoading size={40} />
 								</h1>
-								<Popover>
-									<PopoverTrigger asChild>
-										<Avatar className="w-12 h-12 cursor-pointer block md:hidden">
-											<AvatarImage src={userImage} alt="@shadcn" />
-											<AvatarFallback className="bg-[#f39c12] text-white font-bold uppercase text-lg">
-												{session?.user?.name
-													?.split(' ')
-													.map(palavra => palavra.substring(0, 1))
-													.join('')}
-											</AvatarFallback>
-										</Avatar>
-									</PopoverTrigger>
-									<PopoverContent className="mr-3 w-70 flex flex-col gap-4">
-										<p className="text-center">{session?.user?.email}</p>
-										<p className="flex justify-center">
-											<Button
-												variant={'outline'}
-												onClick={() => {
-													signOut();
-													handleLogin();
-												}}
-											>
-												Sair
-											</Button>
-										</p>
-									</PopoverContent>
-								</Popover>
 							</div>
 						</Link>
 

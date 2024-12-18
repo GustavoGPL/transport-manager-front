@@ -4,7 +4,6 @@ import './globals.css';
 import Header from '@/components/header';
 import QueryProvider from '@/utils/queryProvider';
 import { cn } from '@/lib/utils';
-import SessionProviderWrapper from '@/utils/sessionsProviderWrapper';
 
 const roboto = Roboto({ subsets: ['latin'], weight: ['400', '700'] });
 
@@ -21,9 +20,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={cn('antialiased bg-gray-100', roboto.className)}>
-				<SessionProviderWrapper>
-					<QueryProvider>{children}</QueryProvider>
-				</SessionProviderWrapper>
+				<QueryProvider>{children}</QueryProvider>
 			</body>
 		</html>
 	);
