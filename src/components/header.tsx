@@ -1,24 +1,8 @@
 'use client';
 import Link from 'next/link';
 import { FaTruckLoading } from 'react-icons/fa';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
-import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
-import { Button } from './ui/button';
-import { signOut, useSession } from 'next-auth/react';
-import { redirect } from 'next/navigation';
 
 export default function Header() {
-	const { data: session } = useSession();
-	console.log(session);
-	const userImage = session?.user?.image ?? undefined;
-
-	const handleLogin = () => {
-		if (!session?.user?.email) {
-			redirect('/login');
-		} else {
-			redirect('/');
-		}
-	};
 	return (
 		<div className="flex flex-col w-full">
 			<header className="relative z-50 w-full bg-[#2c3e50] shadow-md">
@@ -68,34 +52,6 @@ export default function Header() {
 									</li>
 								</ul>
 							</nav>
-
-							<Popover>
-								<PopoverTrigger asChild>
-									<Avatar className="w-12 h-12 cursor-pointer hidden md:block">
-										<AvatarImage src={userImage} alt="@shadcn" />
-										<AvatarFallback className="bg-[#f39c12] text-white font-bold uppercase text-lg">
-											{session?.user?.name
-												?.split(' ')
-												.map(palavra => palavra.substring(0, 1))
-												.join('')}
-										</AvatarFallback>
-									</Avatar>
-								</PopoverTrigger>
-								<PopoverContent className="mr-3 w-70 flex flex-col gap-4">
-									<p className="text-center">{session?.user?.email}</p>
-									<p className="flex justify-center">
-										<Button
-											onClick={() => {
-												signOut();
-												handleLogin();
-											}}
-											className=""
-										>
-											Sair
-										</Button>
-									</p>
-								</PopoverContent>
-							</Popover>
 						</div>
 					</div>
 				</div>
