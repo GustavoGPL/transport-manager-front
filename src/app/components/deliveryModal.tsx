@@ -157,9 +157,9 @@ export function DeliveryModal() {
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[800px] sm:h-[540px]">
-				<div className="flex h-fit">
-					<h2 className="font-bold">Criar Entrega</h2>
-				</div>
+				<DialogHeader>
+					<DialogTitle>Criar Entrega</DialogTitle>
+				</DialogHeader>
 				<Form {...form}>
 					<form
 						onSubmit={form.handleSubmit(onSubmit)}
