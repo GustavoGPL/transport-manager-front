@@ -142,18 +142,22 @@ const Dashboard: React.FC<DashboardProps> = ({
 								</p>
 								<div className="mt-4 space-y-2 flex-grow">
 									{delivery.valiosa && (
-										<p className="bg-yellow-100 text-yellow-800 font-medium rounded-sm p-1">
+										<p className="bg-yellow-100 text-yellow-800 font-bold rounded-sm p-1">
 											Carga Valiosa
 										</p>
 									)}
 									{delivery.cargaPerigosa && (
-										<p className="text-white font-medium bg-red-500 rounded-sm p-1">
+										<p className="text-white font-bold bg-red-500 rounded-sm p-1">
 											Carga Perigosa
 										</p>
 									)}
-									{delivery.temSeguro && (
-										<p className="bg-green-100 text-green-800 font-medium rounded-sm p-1">
+									{delivery.temSeguro ? (
+										<p className="bg-green-100 text-green-800 font-bold rounded-sm p-1">
 											Com Seguro
+										</p>
+									) : (
+										<p className="bg-purple-100 -100 text-purple-800 font-bold rounded-sm p-1">
+											Sem Seguro
 										</p>
 									)}
 								</div>
